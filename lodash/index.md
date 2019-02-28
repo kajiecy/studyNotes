@@ -257,9 +257,142 @@ _.unzip(zipped);
 // => [['fred', 'barney'], [30, 40], [true, false]]
 ```
 
+#####20  _.debounce(func, [wait=0], [options={}])
+> 防抖
+
+```js
+addCount(){
+    console.log("執行了")
+    this.count++;
+}
+_.debounce(this.addCount, 500,{leading:true,trailing:false,maxWait:1000});
+// leading 是否在调用之前延迟
+// trailing 触发延迟结束后是否调用
+// maxWait 最大等待时间
+```
+
+#####21  _.delay(func, wait, [args])
+> 延迟
+
+```js
+_.delay(function(text) {
+  console.log(text);
+}, 1000, 'later');
+// => 一秒后输出 'later'。
+```
+
+#####21  _.once(func)
+> 创建一个只能调用 func 一次的函数。 重复调用返回第一次调用的结果。 func 调用时， this 绑定到创建的函数，并传入对应参数。
+  
+```js
+var initialize = _.once(createApplication);
+initialize();
+initialize();
+// `initialize` 只能调用 `createApplication` 一次。
+```
+
+#####22  _.isEmpty(value)
+> 检查 value 是否为一个空对象，集合，映射或者set。 判断的依据是除非是有枚举属性的对象，length 大于 0 的 arguments object, array, string 或类jquery选择器。
 
 
+#####23  _.random([lower=0], [upper=1], [floating])
+> 产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。 
+  
+```js
+_.random(0, 5);
+// => an integer between 0 and 5
+ 
+_.random(5);
+// => also an integer between 0 and 5
+ 
+_.random(5, true);
+// => a floating-point number between 0 and 5
+ 
+_.random(1.2, 5.2);
+// => a floating-point number between 1.2 and 5.2
+```
 
+#####24  _.round(number, [precision=0]) 四舍五入   floor（向下取整） ceil （向上取整）
+> 根据 precision（精度） 四舍五入 number。 
+  
+```js
+_.round(4.006);
+// => 4
+ 
+_.round(4.006, 2);
+// => 4.01
+ 
+_.round(4060, -2);
+// => 4100
+```
+
+#####25  _.truncate([string=''], [options={}])
+> 根据 precision（精度） 四舍五入 number。 
+  
+```js
+_.truncate('hi-diddly-ho there, neighborino');
+// => 'hi-diddly-ho there, neighbo...'
+ 
+_.truncate('hi-diddly-ho there, neighborino', {
+  'length': 24,
+  'separator': ' '
+});
+// => 'hi-diddly-ho there,...'
+ 
+_.truncate('hi-diddly-ho there, neighborino', {
+  'length': 24,
+  'separator': /,? +/
+});
+// => 'hi-diddly-ho there...'
+ 
+_.truncate('hi-diddly-ho there, neighborino', {
+  'omission': ' [...]'
+});
+// => 'hi-diddly-ho there, neig [...]'
+```
+
+#####26  _.unescape([string=''])   _.escape
+> _.escape的反向版。 这个方法转换string字符串中的 HTML 实体 &amp;, &lt;, &gt;, &quot;, &#39;, 和 &#96; 为对应的字符。 
+  
+```js
+_.unescape('fred, barney, &amp; pebbles');
+// => 'fred, barney, & pebbles'
+```
+
+#####27  _.range([start=0], end, [step=1])
+> 创建一个包含从 start 到 end，但不包含 end 本身范围数字的数组。 如果 start 是负数，而 end 或 step 没有指定，那么 step 从 -1 为开始。 如果 end 没有指定，start 设置为 0。 如果 end 小于 start ，会创建一个空数组，除非指定了 step。 
+```js
+_.range(4);
+// => [0, 1, 2, 3]
+ 
+_.range(-4);
+// => [0, -1, -2, -3]
+ 
+_.range(1, 5);
+// => [1, 2, 3, 4]
+ 
+_.range(0, 20, 5);
+// => [0, 5, 10, 15]
+ 
+_.range(0, -4, -1);
+// => [0, -1, -2, -3]
+ 
+_.range(1, 4, 0);
+// => [1, 1, 1]
+ 
+_.range(0);
+// => []
+```
+
+#####27  _.uniqueId([prefix=''])
+> 生成唯一ID。 如果提供了 prefix ，会被添加到ID前缀上。
+```js
+_.uniqueId('contact_');
+// => 'contact_104'
+ 
+_.uniqueId();
+// => '105'
+```
 
 
 
