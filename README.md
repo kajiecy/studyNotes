@@ -42,3 +42,24 @@
 		(2)、canvas有一个安全策略的问题：如果图片和你本身请求的域名不在同一个域名下，浏览器会报出一个安全问题，这个时候我们要给我们的服务器加一个“允许跨域”访问的响应头————Access Orign=*,这样来保证你的图片可进行跨域被canvas来画；
 
 ```
+
+# loaclstorage 控制过期时间
+```
+function set(key,y){
+	var curTime=new Date().getTime();
+	//存储一个当时存储时候的时间
+	localStorage.setItem(key,JSON.stringify({data:v,time:curTime}));
+
+}
+function get(key,exp) {
+	var data=localStorage.getItem(key);
+	var dataObj=JSON.parse(data);
+	if(new Date().getTime()-dataObj.time>exp) {//get出来的时间减去当时存储的时间大于过期时间，那么就认为过期
+	   console.log("过期");
+	}else {
+	//否则，返回值
+	 console.log("data="+dataObj.data);
+	}
+}
+
+```
