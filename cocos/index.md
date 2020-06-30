@@ -23,12 +23,13 @@
 1. 给不同的对象建立分组
 2. 在分组中编辑碰撞规则
 3. 在main.js 中开始碰撞检测
+4. 在挂载对象的js中添加碰撞触发逻辑
 ```js
     let manager = cc.director.getCollisionManager();
     manager.enabled = true; // 开启碰撞
     manager.enabledDebugDraw = true; // 调试状态绘制出我们物体的碰撞器的形状
 ```
-4. 在挂载对象的js中添加碰撞触发逻辑
+
 ```js
     // 碰撞开始事件(第一次接触)
     onCollisionEnter: function (other, self) {
@@ -42,4 +43,14 @@
     onCollisionExit: function (other, self) {
         console.log("other.name = ", other.node.name, other.node.group, other.node.groupIndex);
     }
+```
+- 开始一个定时器
+``` js
+    this.schedule(()=>{
+        console.log('开始倒计时');
+    },1)
+```
+- 场景跳转
+```js
+    cc.director.loadScene('场景名称')
 ```
