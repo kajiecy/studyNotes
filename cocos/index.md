@@ -30,7 +30,7 @@
     manager.enabledDebugDraw = true; // 调试状态绘制出我们物体的碰撞器的形状
 ```
 
-```js
+```
     // 碰撞开始事件(第一次接触)
     onCollisionEnter: function (other, self) {
         console.log("other.name = ", other.node.name, other.node.group, other.node.groupIndex);
@@ -57,7 +57,7 @@
 - 播放音乐
 
 不要用AudioSource(太坑了,浪费我两小时)!!播放音乐就用cc.audioEngine.playMusic();
-```js
+```
         
         bgAudio:{
             default:null,
