@@ -54,3 +54,16 @@
 ```js
     cc.director.loadScene('场景名称')
 ```
+- 播放音乐
+
+不要用AudioSource(太坑了,浪费我两小时)!!播放音乐就用cc.audioEngine.playMusic();
+```js
+        
+        bgAudio:{
+            default:null,
+            type:cc.AudioClip,
+        },
+        cc.audioEngine.playMusic(this.bgAudio,true); // 播放背景音乐
+        cc.audioEngine.playEffect(this.bgAudio,false); // 播放音效
+        cc.audioEngine.setEffectsVolume(.2); //音效大小
+```
