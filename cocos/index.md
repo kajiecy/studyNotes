@@ -67,3 +67,70 @@
         cc.audioEngine.playEffect(this.bgAudio,false); // 播放音效
         cc.audioEngine.setEffectsVolume(.2); //音效大小
 ```
+
+- 修改载入界面
+
+先执行构建 替换splash.XXXXX.png (背景图片)
+修改css  style-mobile.XXXXX.css、style-desktop.XXXXX.css 中 
+```css
+#splash {
+  background: #171717 url(./splash.85cfd.png) no-repeat fixed;
+  background-size: 100% 100%;
+}
+```
+将背景图片平铺
+
+自定义进度条底部
+```css
+.progress-bar {
+    position: absolute;
+    left: 10%;
+    top: 47%;
+    height: 28px;
+    padding: 4px;
+    width: 80%;
+    border-radius: 50px;
+    /* box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444; */
+    background-color: #110936;
+}
+.progress-bar span{
+    border-radius: 50px;
+    overflow: hidden;
+}
+#progress-number{
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 28px;
+    background: white;
+    opacity: .68;
+    color: #3dc5de;
+    float: right;
+}
+
+```
+html中加入 
+```html
+<div class="progress-bar stripes">
+  <span style="width: 0%">
+    <!--加入span-->
+    <span id="progress-number">0%</span>
+  </span>
+</div>
+```
+main.js 中加入 
+```js
+    function setLoadingDisplay () {
+        // 此处省略部分代码
+        var progressNumber = document.getElementById('progress-number');
+        cc.loader.onProgress = function (completedCount, totalCount, item) {
+            // 此处省略部分代码
+            if (progressBar) {
+                // 此处省略部分代码
+                progressNumber.innerHTML = percent.toFixed(0) + '%';
+            }
+        };
+        // 此处省略部分代码
+    }
+```
